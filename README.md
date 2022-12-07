@@ -66,7 +66,8 @@ Code Coverage generated:
      /home/tchang/proj/my-ros2-codecov-exp/install/cpp_pubsub/coverage/index.html
 ```
 
-![html screenshot](Screenshot-2022-12-07-023731.png)
+And here is a screenshot of the coverage report webpage.
+[<img src="Screenshot-2022-12-07-023731.png" width="250"/>](coverage screenshot)
 
 
 ## How to use GitHub CI to upload coverage report to CodeCov
