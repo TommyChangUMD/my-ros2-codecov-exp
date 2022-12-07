@@ -8,6 +8,7 @@
 ## How to build for test coverage
 
 ```
+rm -rf build/cpp_pubsub/
 colcon build --cmake-args -DCOVERAGE=1 --packages-select cpp_pubsub
 cat log/latest_build/cpp_pubsub/stdout_stderr.log
 ```

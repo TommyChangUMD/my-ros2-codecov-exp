@@ -36,13 +36,9 @@ if(BUILD_TESTING)
   # comment the line when this package is in a git repo and when
   # a copyright and license is added to all source files
   set(ament_cmake_cpplint_FOUND TRUE)
+  # the following lines skip flake8 check
+  set(ament_cmake_flake8_FOUND TRUE)
   ament_lint_auto_find_test_dependencies()
-
-  # # Add a gtest executable
-  # set(TESTFILES
-  #   test/basic_test.cpp)
-  # ament_add_gtest(${PROJECT_NAME}_test ${TESTFILES})
-  # ament_target_dependencies(${PROJECT_NAME}_test ${THIS_PACKAGE_INCLUDE_DEPENDS})
 endif()
 
 
