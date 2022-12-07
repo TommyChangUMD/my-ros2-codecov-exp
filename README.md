@@ -74,11 +74,15 @@ You can take a look at the generated report now.  For example:
 ```
 firefox /home/tchang/proj/my-ros2-codecov-exp/install/cpp_pubsub/coverage/index.html
 ```
+[<img src=screenshots/Screenshot-2022-12-07-023731.png 
+    width="70%" 
+    style="display: block; margin: 0 auto"
+    />](screenshots/Screenshot-2022-12-07-023731.png)
 
 
-## How to use GitHub CI to upload coverage report to CodeCov
+## How to use GitHub CI to upload coverage report to Codecov
 
-### First, sign up CodeCov with you GitHub account.  
+### First, sign up Codecov with you GitHub account.  
 
   https://about.codecov.io/sign-up/
 
@@ -94,7 +98,7 @@ See below for the setup of this repo:
 
 https://github.com/TommyChangUMD/my-ros2-codecov-exp/blob/main/.github/workflows/my_codecov_upload.yml
 
-### Add your CodeCov and GitHub CI badge to README.md
+### Add your Codecov and GitHub CI badge to README.md
 
 Follow the instruction below to copy the badge (in markdown format)
 and paste it in your README.md
@@ -106,3 +110,14 @@ https://docs.github.com/en/actions/monitoring-and-troubleshooting-workflows/addi
 Note: When you click on the codecov badge, you should see the coverage
 report.  You should also see the source file listing.  If not, you may
 need to login your codecov account first.
+
+[<img src=screenshots/Screenshot-2022-12-07-164405.png
+    width="70%" 
+    style="display: block; margin: 0 auto"
+    />](screenshots/Screenshot-2022-12-07-164405.png)
+
+[<img src=screenshots/Screenshot-2022-12-07-164423.png
+    width="70%"
+    style="display: block; margin: 0 auto"
+    />](screenshots/Screenshot-2022-12-07-164423.png)
+
