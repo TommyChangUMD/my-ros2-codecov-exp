@@ -102,3 +102,7 @@ and paste it in your README.md
 https://docs.codecov.com/docs/status-badges
 
 https://docs.github.com/en/actions/monitoring-and-troubleshooting-workflows/adding-a-workflow-status-badge
+
+Note: When you click on the codecov badge, you should see the coverage
+report.  You should also see the source file listing.  If not, you may
+need to login your codecov account first.
