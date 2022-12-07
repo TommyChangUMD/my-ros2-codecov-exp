@@ -91,9 +91,9 @@ jobs:
         uses: codecov/codecov-action@v3
         with:
           token: ${{ secrets.CODECOV_TOKEN }} # not required for public repos
-          # files: ./coverage1.xml,./coverage2.xml # optional
+          files: ${{github.workspace}}/install/cpp_pubsub/lib/cpp_pubsub/coverage_cleaned.info
           # flags: unittests # optional
-          directory: ${{github.workspace}}/install/
-          name: codecov-umbrella # optional
+          # directory: ${{github.workspace}}/install/
+          # name: codecov-umbrella # optional
           fail_ci_if_error: true # optional (default = false)
           verbose: true # optional (default = false)      
