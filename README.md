@@ -1,5 +1,8 @@
 # my-ros2-codecov-exp
 
+[![codecov](https://codecov.io/gh/TommyChangUMD/my-ros2-codecov-exp/branch/main/graph/badge.svg?token=KRAHD3BZP7)](https://codecov.io/gh/TommyChangUMD/my-ros2-codecov-exp)
+
+
 ## How to build for test coverage
 
 ```
@@ -68,3 +71,18 @@ Code Coverage generated:
 
 ## How to use GitHub CI to upload coverage report to CodeCov
 
+### First, sign up CodeCov with you GitHub account.  
+
+  https://about.codecov.io/sign-up/
+
+### Enable the repository you want to upload from
+
+After you sign in, you should see a list of your repositories (you may
+have to refresh and reload the page a few times). Enable the one you
+want to receive coverage data from.
+
+### Create a GitHub CI yaml file
+
+See below for the setup of this repo:
+
+https://github.com/TommyChangUMD/my-ros2-codecov-exp/blob/main/.github/workflows/my_codecov_upload.yml
