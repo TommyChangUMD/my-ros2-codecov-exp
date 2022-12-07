@@ -64,3 +64,7 @@ Code Coverage generated:
 ```
 
 ![html screenshot](Screenshot-2022-12-07-023731.png)
+
+
+## How to use GitHub CI to upload coverage report to CodeCov
+
