@@ -41,7 +41,6 @@ jobs:
       # Install some system pacakges
       - name: Install ROS 2 Humble packages
         run: |
-          sudo apt install -y lcov ros-humble-ros-base ros-dev-tools 
           sudo apt install software-properties-common
           sudo add-apt-repository universe
           sudo apt update && sudo apt install curl
@@ -52,7 +51,7 @@ jobs:
             http://packages.ros.org/ros2/ubuntu \
             $(. /etc/os-release && echo $UBUNTU_CODENAME) main" \
             | sudo tee /etc/apt/sources.list.d/ros2.list > /dev/null
-          sudo apt install -y lcov ros-humble-ros-base ros-dev-tools 
+          sudo apt install -y lcov ros-humble-ros-base 
 
       # Build for test coverage
       - name: Configure CMake flags and build exectables
