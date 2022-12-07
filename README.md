@@ -2,7 +2,7 @@
 
 [![codecov](https://codecov.io/gh/TommyChangUMD/my-ros2-codecov-exp/branch/main/graph/badge.svg?token=KRAHD3BZP7)](https://codecov.io/gh/TommyChangUMD/my-ros2-codecov-exp)
 
-![CICD Workflow status](https://github.com/TommyChangUMD/my-ros2-codecov-exp/workflows/my_codecov_upload.yml/badge.svg)
+![CICD Workflow status](https://github.com/TommyChangUMD/my-ros2-codecov-exp/actions/workflows/my_codecov_upload.yml/badge.svg)
 
 
 ## How to build for test coverage
