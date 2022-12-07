@@ -8,9 +8,11 @@
 #    https://github.com/marketplace/actions/setup-ros-environment
 #    https://github.com/marketplace/actions/ros-2-ci-action
 #
-# CodeCov example:
+# Coveralls example:
 #    https://github.com/marketplace/actions/coveralls-github-action
 #
+# CodeCov example:
+#    https://github.com/codecov/example-node
 ##############################################################################
 
 name: Build
@@ -77,9 +79,21 @@ jobs:
           timeout 3 ros2 launch cpp_pubsub run_test.launch.py || true
           ros2 run cpp_pubsub generate_coverage_report.bash
       
-      # Upload coverage result to Coverage.io 
-      - name: Upload result to Coveralls.io
-        uses: coverallsapp/github-action@1.1.3
+      # # Upload coverage result to Coverage.io 
+      # - name: Upload result to Coveralls.io
+      #   uses: coverallsapp/github-action@1.1.3
+      #   with:
+      #     github-token: ${{ secrets.GITHUB_TOKEN }}
+      #     path-to-lcov: ${{github.workspace}}/install/cpp_pubsub/lib/cpp_pubsub/coverage_cleaned.info
+
+      # Upload coverage result to CodeCov
+      - name: Upload result to CodeCov
+        uses: codecov/codecov-action@v3
         with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          path-to-lcov: ${{github.workspace}}/install/cpp_pubsub/lib/cpp_pubsub/coverage_cleaned.info
+          token: ${{ secrets.CODECOV_TOKEN }} # not required for public repos
+          # files: ./coverage1.xml,./coverage2.xml # optional
+          # flags: unittests # optional
+          directory: ${{github.workspace}}/install/
+          name: codecov-umbrella # optional
+          fail_ci_if_error: true # optional (default = false)
+          verbose: true # optional (default = false)      
