@@ -62,3 +62,5 @@ Code Coverage generated:
      /home/tchang/proj/my-ros2-codecov-exp/install/cpp_pubsub/lib/cpp_pubsub/coverage_cleaned.info
      /home/tchang/proj/my-ros2-codecov-exp/install/cpp_pubsub/coverage/index.html
 ```
+
+![html screenshot](Screenshot-2022-12-07-023731.png)
