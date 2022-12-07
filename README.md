@@ -2,6 +2,8 @@
 
 [![codecov](https://codecov.io/gh/TommyChangUMD/my-ros2-codecov-exp/branch/main/graph/badge.svg?token=KRAHD3BZP7)](https://codecov.io/gh/TommyChangUMD/my-ros2-codecov-exp)
 
+![CICD Workflow status](https://github.com/TommyChangUMD/my-ros2-codecov-exp/workflows/my_codecov_upload.yml/badge.svg)
+
 
 ## How to build for test coverage
 
@@ -84,9 +86,11 @@ See below for the setup of this repo:
 
 https://github.com/TommyChangUMD/my-ros2-codecov-exp/blob/main/.github/workflows/my_codecov_upload.yml
 
-### Add your CodeCov badge to README.md
+### Add your CodeCov and GitHub CI badge to README.md
 
 Follow the instruction below to copy the badge (in markdown format)
 and paste it in your README.md
 
 https://docs.codecov.com/docs/status-badges
+
+https://docs.github.com/en/actions/monitoring-and-troubleshooting-workflows/adding-a-workflow-status-badge
