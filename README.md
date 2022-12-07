@@ -86,3 +86,10 @@ want to receive coverage data from.
 See below for the setup of this repo:
 
 https://github.com/TommyChangUMD/my-ros2-codecov-exp/blob/main/.github/workflows/my_codecov_upload.yml
+
+### Add your CodeCov badge to README.md
+
+Follow the instruction below to copy the badge (in markdown format)
+and paste it in your README.md
+
+https://docs.codecov.com/docs/status-badges
