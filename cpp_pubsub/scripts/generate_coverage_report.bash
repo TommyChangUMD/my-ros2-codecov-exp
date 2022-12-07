@@ -10,22 +10,30 @@ PROG_DIR=$(dirname $(readlink -f "$0")) # where is the program located
 EXEC_DIR=$(pwd -P)                      # where are we executing from
 PROG_NAME=$(basename "$0")              # the program name without the path
 
-# get ros package name
+# 1.) Get the ros package name
 ROS_PACKAGE_NAME=$(basename $PROG_DIR)
 
-# generat report info
+# 2.) Generat report info
 BUILD_DIR=$EXEC_DIR/build/$ROS_PACKAGE_NAME/
 rm -f $PROG_DIR/coverage.info
 lcov --capture --directory $BUILD_DIR --output-file $PROG_DIR/coverage.info
 
-# but, we want to filter out some files.
+# 3.) Exclude some files from the reoport
 rm -f $PROG_DIR/coverage_cleaned.info
 lcov --remove $PROG_DIR/coverage.info \
-     '/opt/*' '/usr/*' 'rclcpp/*' \
+     '/opt/*' \
+     '/usr/*' \
+     '*rclcpp/*' \
+     '*libstatistics_collector/*' \
+     '*rosidl_runtime*' \
+     '*rcl_interfaces*' \
+     '*rmw/rmw/*' \
+     '*tracetools/*' \
+     '*_msgs/*' \
      --output-file $PROG_DIR/coverage_cleaned.info
 
 
-# finally generat report
+# 4.) Finally generate the coverage report
 rm -rf $EXEC_DIR/install/$ROS_PACKAGE_NAME/coverage/
 genhtml $PROG_DIR/coverage_cleaned.info --output-directory \
         $EXEC_DIR/install/$ROS_PACKAGE_NAME/coverage

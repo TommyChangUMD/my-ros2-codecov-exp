@@ -69,6 +69,13 @@ Code Coverage generated:
      /home/tchang/proj/my-ros2-codecov-exp/install/cpp_pubsub/coverage/index.html
 ```
 
+You can take a look at the generated report now.  For example:
+
+```
+firefox /home/tchang/proj/my-ros2-codecov-exp/install/cpp_pubsub/coverage/index.html
+```
+
+
 ## How to use GitHub CI to upload coverage report to CodeCov
 
 ### First, sign up CodeCov with you GitHub account.  
