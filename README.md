@@ -1,6 +1,6 @@
 # my-ros2-codecov-exp
 
-## How to build test coverage
+## How to build for test coverage
 
 ```
 colcon build --cmake-args -DCOVERAGE=1 --packages-select cpp_pubsub
@@ -41,3 +41,24 @@ timeout 3 ros2 launch cpp_pubsub run_test.launch.py
 ros2 run cpp_pubsub generate_coverage_report.bash
 ```
 
+You should see:
+```
+Summary coverage rate:
+  lines......: 100.0% (29 of 29 lines)
+  functions..: 100.0% (6 of 6 functions)
+  branches...: no data found
+Reading data file /home/tchang/proj/my-ros2-codecov-exp/install/cpp_pubsub/lib/cpp_pubsub/coverage_cleaned.info
+Found 2 entries.
+Found common filename prefix "/home/tchang/proj/my-ros2-codecov-exp/cpp_pubsub"
+Writing .css and .png files.
+Generating output.
+Processing file src/publisher_member_function.cpp
+Processing file src/subscriber_member_function.cpp
+Writing directory view page.
+Overall coverage rate:
+  lines......: 100.0% (29 of 29 lines)
+  functions..: 100.0% (6 of 6 functions)
+Code Coverage generated:
+     /home/tchang/proj/my-ros2-codecov-exp/install/cpp_pubsub/lib/cpp_pubsub/coverage_cleaned.info
+     /home/tchang/proj/my-ros2-codecov-exp/install/cpp_pubsub/coverage/index.html
+```
