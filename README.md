@@ -4,6 +4,12 @@
 
 ![CICD Workflow status](https://github.com/TommyChangUMD/my-ros2-codecov-exp/actions/workflows/my_codecov_upload.yml/badge.svg)
 
+This repo provides a template for:
+
+  - GitHub CI
+  - Codecov
+  - Build ROS 2 package
+  - Build C++ library 
 
 ## How to build for test coverage
 
