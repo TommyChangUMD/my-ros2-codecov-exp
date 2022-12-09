@@ -75,8 +75,7 @@ jobs:
         run: |
           source /opt/ros/humble/setup.bash
           source install/setup.bash
-          timeout 3 ros2 launch cpp_pubsub run_test.launch.py || true
-          sync; sleep 1; sync  # make sure code coverage data are saved to disk
+          timeout -s SIGINT 3 ros2 launch cpp_pubsub run_test.launch.py || true
           ros2 run cpp_pubsub generate_coverage_report.bash
       
       # Upload coverage result to CodeCov

@@ -7,6 +7,8 @@
 This repo provides a template for:
 
   - GitHub CI
+    - "main" branch installs ROS 2 Humble on top of Ubuntu 22.04
+    - "test-docker" branch uses a ROS 2 Galactic docker container from docker hub
   - Codecov
   - Build ROS 2 package
   - Build C++ library 
