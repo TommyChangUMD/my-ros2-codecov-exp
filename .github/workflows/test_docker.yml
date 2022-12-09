@@ -33,7 +33,7 @@ jobs:
     name: Build everything and run unit test in ROS 2 Docker container
     runs-on: ubuntu-latest       # any ubuntu that has docker 
     container:
-      image: osrf/ros:humble-desktop # use ROS Humble from docker hub repository
+      image: osrf/ros:humble-desktop-full # use ROS Humble from docker hub repository
       volumes:
         - ${{ github.workspace }}:/app
     steps:
@@ -41,8 +41,8 @@ jobs:
         run: |
           apt update
           apt -y install ros-humble-ros-base python3-colcon-common-extensions lcov
-          apt -y install ros-humble-gazebo-ros-pkgs 
-          apt -y install ros-humble-turtlebot3*
+          # apt -y install ros-humble-gazebo-ros-pkgs 
+          # apt -y install ros-humble-turtlebot3*
       - name: Check out the repo
         uses: actions/checkout@v3
         
@@ -63,7 +63,7 @@ jobs:
         run: |
           source install/setup.bash
           timeout 3 ros2 launch cpp_pubsub run_test.launch.py || true
-          sync; sleep 1; sync  # make sure code coverage data are saved to disk
+          sync; sleep 1; sync  # make sure all code coverage data are saved to disk
           ros2 run cpp_pubsub generate_coverage_report.bash
       
       # Upload coverage result to CodeCov
