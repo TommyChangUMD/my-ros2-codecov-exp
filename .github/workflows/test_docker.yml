@@ -32,6 +32,9 @@ jobs:
   my_build_job:
     name: Build everything and run unit test in ROS 2 Docker container
     runs-on: ubuntu-latest       # any ubuntu that has docker 
+    defaults:
+      run:
+        shell: bash
     container:
       image: osrf/ros:humble-desktop # use ROS Humble from docker hub repository
       volumes:
@@ -50,7 +53,7 @@ jobs:
           cd /app
           printenv
           ls
-          ls /opt/
+          ls /opt/ros/humble/setup.bash
           source /opt/ros/humble/setup.bash
           colcon build --cmake-args -DCOVERAGE=1 --packages-select cpp_pubsub
           cat log/latest_build/cpp_pubsub/stdout_stderr.log
