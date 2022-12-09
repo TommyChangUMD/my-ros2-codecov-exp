@@ -1,0 +1,24 @@
+name: Compile site assets
+on: push
+
+jobs:
+  compile:
+    name: Compile assets
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the repo
+        uses: actions/checkout@v2
+      - name: Run Docker container
+        uses: addnab/docker-run-action@v3
+        with:
+          image: osrf/ros:humble-desktop
+          options: -v ${{ github.workspace }}:/app
+          run: |
+            apt update
+            apt -y install ros-humble-gazebo-ros-pkgs 
+            apt -y install ros-humble-turtlebot3*
+      - name: Verify 
+        run: |
+          pwd
+          ls -la
+          uname -a
