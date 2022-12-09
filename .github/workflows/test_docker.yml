@@ -1,3 +1,9 @@
+#
+#
+# https://www.youtube.com/watch?v=U7TY_qUD8yA&ab_channel=AndrewSchmelyun
+# https://github.com/aschmelyun/github-actions-docker-phpunit
+# https://github.com/aschmelyun/github-actions-docker-compile
+
 name: Compile site assets
 on: 
   # Triggered whenever push to the main branch
