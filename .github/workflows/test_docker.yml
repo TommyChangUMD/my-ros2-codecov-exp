@@ -31,17 +31,18 @@ jobs:
   #         cat /etc/lsb-release
   my_build_job:
     name: Build everything and run unit test in ROS 2 Docker container
-    runs-on: ubuntu-18.04       # any ubuntu that has docker 
+    runs-on: ubuntu-latest       # any ubuntu that has docker 
     container:
       image: osrf/ros:humble-desktop # use ROS Humble from docker hub repository
       volumes:
         - ${{ github.workspace }}:/app
     steps:
-      # - name: Install additional packages
-      #   run: |
-      #     apt update
-      #     apt -y install ros-humble-gazebo-ros-pkgs 
-      #     apt -y install ros-humble-turtlebot3*
+      - name: Install additional packages if needed
+        run: |
+          apt update
+          apt -y install ros-humble-ros-base python3-colcon-common-extensions lcov
+          apt -y install ros-humble-gazebo-ros-pkgs 
+          apt -y install ros-humble-turtlebot3*
       - name: Check out the repo
         uses: actions/checkout@v3
         
