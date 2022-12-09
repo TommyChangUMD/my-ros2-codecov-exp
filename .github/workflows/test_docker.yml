@@ -8,27 +8,6 @@ on:
   workflow_dispatch:
 
 jobs:
-  # compile:
-  #   name: Compile assets
-  #   runs-on: ubuntu-18.04
-  #   steps:
-  #     - name: Check out the repo
-  #       uses: actions/checkout@v3
-  #     - name: Run Docker container
-  #       uses: addnab/docker-run-action@v3
-  #       with:
-  #         image: osrf/ros:humble-desktop
-  #         options: -v ${{ github.workspace }}:/app
-  #         run: |
-  #           apt update
-  #           apt -y install ros-humble-gazebo-ros-pkgs 
-  #           apt -y install ros-humble-turtlebot3*
-  #     - name: Verify 
-  #       run: |
-  #         pwd
-  #         ls -la
-  #         uname -a
-  #         cat /etc/lsb-release
   my_build_job:
     name: Build everything and run unit test in ROS 2 Docker container
     runs-on: ubuntu-18.04       # any ubuntu that has docker 
@@ -36,9 +15,7 @@ jobs:
       run:
         shell: bash       # specify bash for use with docker container
     container:
-      image: osrf/ros:humble-desktop # use ROS Humble from docker hub repository
-      # volumes:
-      #   - ${{ github.workspace }}:/app
+      image: osrf/ros:galactic-desktop # use ROS Galactic from docker hub repository
     steps:
       - name: Install additional packages if needed
         run: |
@@ -50,14 +27,14 @@ jobs:
       # Build for test coverage
       - name: Configure CMake flags and build exectables
         run: |
-          source /opt/ros/humble/setup.bash
+          source /opt/ros/galactic/setup.bash
           colcon build --cmake-args -DCOVERAGE=1 --packages-select cpp_pubsub
           cat log/latest_build/cpp_pubsub/stdout_stderr.log
       
       # Check c++ code (and others) for style and static coding errors
       - name: Check code sytle and error
         run: |
-          source /opt/ros/humble/setup.bash
+          source /opt/ros/galactic/setup.bash
           colcon test --packages-select cpp_pubsub
           cat log/latest_test/cpp_pubsub/stdout_stderr.log
 
