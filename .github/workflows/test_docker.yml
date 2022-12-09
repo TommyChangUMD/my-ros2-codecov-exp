@@ -28,7 +28,7 @@ on:
 
 jobs:
   my_build_job:
-    name: Build everything and run unit test in ROS 2 Docker container
+    name: Build and run unit test inside the ROS 2 Docker container
     runs-on: ubuntu-18.04       # any ubuntu that has docker 
     defaults:
       run:
