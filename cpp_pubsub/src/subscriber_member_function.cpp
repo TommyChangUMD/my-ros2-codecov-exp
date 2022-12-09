@@ -20,6 +20,12 @@ using std_msgs::msg::String;
 
 using SUBSCRIBER = rclcpp::Subscription<String>::SharedPtr;
 
+static void HandleSignal(int)
+{
+  fprintf(stderr, "exit nicely\n");
+  exit(EXIT_SUCCESS);
+}
+
 class MinimalSubscriber : public rclcpp::Node {
 public:
 
@@ -43,6 +49,7 @@ private:
 int main(int argc, char *argv[])
 {
   rclcpp::init(argc, argv);
+  signal(SIGINT, HandleSignal); // exit nicely to save coverage data
   rclcpp::spin(std::make_shared<MinimalSubscriber>());
   rclcpp::shutdown();
   return 0;
