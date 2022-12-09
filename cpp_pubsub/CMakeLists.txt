@@ -21,8 +21,7 @@ find_package(std_msgs REQUIRED)
 # below sets up code coverage and uncrustify config file location
 if(COVERAGE)
   set(CMAKE_BUILD_TYPE "Debug")
-  # set(CMAKE_CXX_FLAGS "--coverage")
-  set(CMAKE_CXX_FLAGS "-fprofile-arcs -ftest-coverage")
+  set(CMAKE_CXX_FLAGS "--coverage")
   set(CMAKE_CXX_OUTPUT_EXTENSION_REPLACE "ON")
   set(ARG_CONFIG_FILE "${PROJECT_SOURCE_DIR}/uncrustify_google_cpp_allman.cfg"
     CACHE STRING "uncrustify config file")
