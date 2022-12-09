@@ -1,8 +1,8 @@
 #
 # Docker method.  Use pre-build ROS 2 docker image.
 #
-# Important Note, Docker Hub has DockerHub has restricted the number
-# of image pull requests.
+# Important Note, Docker Hub has restricted the number of image pull
+# requests.
 #
 # See # https://docs.docker.com/docker-hub/download-rate-limit
 #
@@ -49,7 +49,7 @@ jobs:
           source /opt/ros/galactic/setup.bash
           colcon build --cmake-args -DCOVERAGE=1 --packages-select cpp_pubsub
           cat log/latest_build/cpp_pubsub/stdout_stderr.log
-          find build/cpp_pubsub/ | grep -E 'gcda|gcno' # catch error
+          find build/cpp_pubsub/ | grep -E 'gcno' # catch error -- exepct to see .gcno files
       
       # Check c++ code (and others) for style and static coding errors
       - name: Check code sytle and error
@@ -64,7 +64,7 @@ jobs:
         run: |
           source install/setup.bash
           ros2 launch cpp_pubsub run_test.launch.py
-          find build/cpp_pubsub/ | grep -E 'gcda|gcno' # catch error
+          find build/cpp_pubsub/ | grep -E 'gcda # catch error -- expect to see .gcda files
           ros2 run cpp_pubsub generate_coverage_report.bash
       
       # Upload coverage result to CodeCov
