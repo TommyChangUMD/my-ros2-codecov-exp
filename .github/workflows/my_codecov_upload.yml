@@ -9,6 +9,8 @@
 #
 # CodeCov badge setup:
 #    https://docs.codecov.com/docs/status-badges
+#
+# version 1.1
 ##############################################################################
 
 name: Build
@@ -39,6 +41,7 @@ jobs:
       # Install some system pacakges
       - name: Install ROS 2 Humble packages
         run: |
+          sudo apt update
           sudo apt install software-properties-common
           sudo add-apt-repository universe
           sudo apt update && sudo apt install curl
@@ -73,6 +76,7 @@ jobs:
           source /opt/ros/humble/setup.bash
           source install/setup.bash
           timeout 3 ros2 launch cpp_pubsub run_test.launch.py || true
+          sync; sleep 1; sync  # make sure code coverage data are saved to disk
           ros2 run cpp_pubsub generate_coverage_report.bash
       
       # Upload coverage result to CodeCov
