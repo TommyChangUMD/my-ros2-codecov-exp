@@ -42,11 +42,23 @@ if(BUILD_TESTING)
 endif()
 
 
+# build my dummy library
+add_library(my_dummy_lib
+  src/my_dummy_lib_funct1.cpp
+  src/my_dummy_lib_funct2.cpp)
+target_include_directories(my_dummy_lib PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/include")
+
+# define the executables
 add_executable(talker src/publisher_member_function.cpp)
 ament_target_dependencies(talker rclcpp std_msgs)
-
 add_executable(listener src/subscriber_member_function.cpp)
 ament_target_dependencies(listener rclcpp std_msgs)
+
+# link the executables with my dummy library
+target_link_directories(talker PUBLIC ${CMAKE_CURRENT_BINARY_DIR})
+target_link_libraries(talker my_dummy_lib)
+target_link_directories(listener PUBLIC ${CMAKE_CURRENT_BINARY_DIR})
+target_link_libraries(listener my_dummy_lib)
 
 # install executables
 install(TARGETS
@@ -67,4 +79,3 @@ install(PROGRAMS      # want to make the file executable (ie. chmod a+x)
 
 
 ament_package()
-

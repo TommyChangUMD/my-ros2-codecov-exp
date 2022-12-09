@@ -16,6 +16,8 @@
 #include <rclcpp/rclcpp.hpp>
 #include <std_msgs/msg/string.hpp>
 
+#include "my_dummy_lib_funct2.hpp"
+
 using namespace std::chrono_literals;
 
 /* This example creates a subclass of Node and uses std::bind() to register a
@@ -56,7 +58,8 @@ private:
 
     message.data = "Hello, world! " + std::to_string(count_++);
     RCLCPP_INFO_STREAM(this->get_logger(),
-                       "Publishing: " << message.data.c_str() << 323);
+                       "Publishing: " << message.data.c_str() <<
+                       " " << function2(323));
 
     // Publish the message
     publisher_->publish(message);
