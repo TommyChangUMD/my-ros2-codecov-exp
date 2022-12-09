@@ -20,16 +20,12 @@ using std_msgs::msg::String;
 
 using SUBSCRIBER = rclcpp::Subscription<String>::SharedPtr;
 
-static void HandleSignal(int)
-{
-  fprintf(stderr, "exit nicely\n");
-  exit(EXIT_SUCCESS);
-}
-
 class MinimalSubscriber : public rclcpp::Node {
 public:
 
-  MinimalSubscriber() : Node("minimal_subscriber")
+  MinimalSubscriber() :
+    Node("minimal_subscriber"),
+    count_(0)
   {
     auto callback = std::bind(&MinimalSubscriber::topic_callback, this, _1);
 
@@ -38,18 +34,22 @@ public:
 
 private:
 
-  void topic_callback(const std_msgs::msg::String& msg) const
+  void topic_callback(const std_msgs::msg::String& msg)
   {
     RCLCPP_INFO(this->get_logger(), "I heard: '%s'", msg.data.c_str());
+
+    // exit nicely so that coverage data can be saved properly
+    if (++count_ >= 3)
+      exit(EXIT_SUCCESS);
   }
 
+  size_t count_;
   SUBSCRIBER subscription_;
 };
 
 int main(int argc, char *argv[])
 {
   rclcpp::init(argc, argv);
-  signal(SIGINT, HandleSignal); // exit nicely to save coverage data
   rclcpp::spin(std::make_shared<MinimalSubscriber>());
   rclcpp::shutdown();
   return 0;
