@@ -19,7 +19,7 @@
 using std::placeholders::_1;
 using std_msgs::msg::String;
 
-using SUBSCRIBER   = rclcpp::Subscription<String>::SharedPtr;
+using SUBSCRIBER = rclcpp::Subscription<String>::SharedPtr;
 
 using STRING_MSG = std_msgs::msg::String;
 
@@ -33,8 +33,9 @@ public:
   {
     for (int idx = 0; idx < numNodes; idx++)
     {
-      std::string subName = "subscription" + std::to_string(idx);
-      std::function<void(const STRING_MSG& msg)> callback  =
+      std::string subName = "subscription" +
+                            std::to_string(idx);
+      std::function<void(const STRING_MSG& msg)> callback =
         std::bind(&MinimalSubscriber::topic_callback, this, _1, subName);
       subscriptions_[idx] = this->create_subscription<String>(topic_name,
                                                               10,
@@ -50,7 +51,7 @@ private:
                 subName.c_str(), msg.data.c_str());
   }
 
-  int numNodes = 5;
+  int numNodes                          = 5;
   std::vector<SUBSCRIBER>subscriptions_ = std::vector<SUBSCRIBER>(numNodes);
 };
 
