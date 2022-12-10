@@ -52,7 +52,7 @@ source install/setup.bash
 # launch unit test to generate coverage. (or run whatever for 3 secs)
 ros2 launch cpp_pubsub run_test.launch.py
 
-# --- Or run the tests and then control-c after 3 secs
+# --- Or run any infinite-loop tests and then control-c after 3 secs
 timeout -s SIGINT --preserve-status 3 \ 
     ros2 launch cpp_pubsub run_test.launch.py
 
