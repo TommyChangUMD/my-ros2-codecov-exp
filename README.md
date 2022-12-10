@@ -12,7 +12,7 @@ This repo provides a template for:
   - Codecov
   - Build ROS 2 package
   - Build C++ library 
-  - Vector of subscriber callbacks
+  - subscribe to multiple topics (no need to use multiple callbacks.)
 
 ## How to build for test coverage
 
@@ -50,8 +50,11 @@ xmllint       =   1.46 sec*proc (1 test)
 source install/setup.bash
 
 # launch unit test to generate coverage. (or run whatever for 3 secs)
-timeout -s SIGINT 3 \
-  ros2 launch cpp_pubsub run_test.launch.py
+ros2 launch cpp_pubsub run_test.launch.py
+
+# --- Or run the tests and then control-c after 3 secs
+timeout -s SIGINT --preserve-status 3 \ 
+    ros2 launch cpp_pubsub run_test.launch.py
 
 # create coverage report (both lcov info file and html output)
 ros2 run cpp_pubsub generate_coverage_report.bash
