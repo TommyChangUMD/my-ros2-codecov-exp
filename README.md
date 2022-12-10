@@ -49,8 +49,9 @@ xmllint       =   1.46 sec*proc (1 test)
 ## don't forget to source the shell environment
 source install/setup.bash
 
-# launch unit test to generate coverage.  
-ros2 launch cpp_pubsub run_test.launch.py # (will terminate after 3 secs )
+# launch unit test to generate coverage. (or run whatever for 3 secs)
+timeout -s SIGINT 3 \
+  ros2 launch cpp_pubsub run_test.launch.py
 
 # create coverage report (both lcov info file and html output)
 ros2 run cpp_pubsub generate_coverage_report.bash

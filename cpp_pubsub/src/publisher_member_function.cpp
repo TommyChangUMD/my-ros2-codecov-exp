@@ -28,13 +28,6 @@ using STRING    = std_msgs::msg::String;
 using PUBLISHER = rclcpp::Publisher<STRING>::SharedPtr;
 using TIMER     = rclcpp::TimerBase::SharedPtr;
 
-
-// static void HandleSignal(int)
-// {
-//   fprintf(stderr, "exit nicely\n");
-//   exit(EXIT_SUCCESS);
-// }
-
 class MinimalPublisher : public rclcpp::Node {
 public:
 
@@ -71,10 +64,6 @@ private:
 
     // Publish the message
     publisher_->publish(message);
-
-    // exit nicely so that coverage data can be saved properly
-    if (count_ > 3)
-      exit(EXIT_SUCCESS);
   }
 };
 
@@ -82,8 +71,6 @@ int main(int argc, char *argv[])
 {
   // 1.) Initialize ROS 2 C++ client library
   rclcpp::init(argc, argv);
-
-  // signal(SIGINT, HandleSignal); // exit nicely to save coverage data
 
   // 2.) Start processing
   rclcpp::spin(std::make_shared<MinimalPublisher>());
