@@ -76,7 +76,8 @@ jobs:
       - name: Run Test Coverage
         run: |
           source install/setup.bash
-          ros2 launch cpp_pubsub run_test.launch.py
+          timeout -s SIGINT --preserve-status 3 \
+            ros2 launch cpp_pubsub run_test.launch.py
           find build/cpp_pubsub/ | grep -E 'gcda' # catch error -- expect to see .gcda files
           ros2 run cpp_pubsub generate_coverage_report.bash
       
