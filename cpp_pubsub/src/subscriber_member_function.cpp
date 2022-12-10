@@ -15,21 +15,25 @@
 
 #include <rclcpp/rclcpp.hpp>
 #include <std_msgs/msg/string.hpp>
+#include <vector>
 using std::placeholders::_1;
 using std_msgs::msg::String;
+using RCL_NODE_PTR = std::shared_ptr<rclcpp::Node>;
 
 using SUBSCRIBER = rclcpp::Subscription<String>::SharedPtr;
 
 class MinimalSubscriber : public rclcpp::Node {
 public:
 
-  MinimalSubscriber() :
-    Node("minimal_subscriber"),
+  MinimalSubscriber(const std::string& node_name      = "my_node",
+                    const std::string& node_namespace = "/my_ns/",
+                    const std::string& topic_name     = "my_topic") :
+    Node(node_name, node_namespace),
     count_(0)
   {
     auto callback = std::bind(&MinimalSubscriber::topic_callback, this, _1);
 
-    subscription_ = this->create_subscription<String>("topic", 10, callback);
+    subscription_ = this->create_subscription<String>(topic_name, 10, callback);
   }
 
 private:
@@ -39,7 +43,7 @@ private:
     RCLCPP_INFO(this->get_logger(), "I heard: '%s'", msg.data.c_str());
 
     // exit nicely so that coverage data can be saved properly
-    if (++count_ >= 3)
+    if (++count_ > 3)
       exit(EXIT_SUCCESS);
   }
 
@@ -50,7 +54,24 @@ private:
 int main(int argc, char *argv[])
 {
   rclcpp::init(argc, argv);
-  rclcpp::spin(std::make_shared<MinimalSubscriber>());
+
+  // rclcpp::spin(std::make_shared<MinimalSubscriber>());
+  // rclcpp::shutdown();
+
+  rclcpp::executors::MultiThreadedExecutor executor;
+
+  int  numNodes = 5;
+  auto nodes    = std::vector<RCL_NODE_PTR>(numNodes);
+
+  for (int idx = 0; idx < numNodes; idx++)
+  {
+    std::string nodeName = "my_node" + std::to_string(idx);
+    nodes[idx] = std::make_shared<MinimalSubscriber>(nodeName, "/", "topic");
+    executor.add_node(nodes[idx]);
+  }
+
+  executor.spin();
   rclcpp::shutdown();
+
   return 0;
 }

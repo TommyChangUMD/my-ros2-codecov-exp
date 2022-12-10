@@ -12,6 +12,7 @@ This repo provides a template for:
   - Codecov
   - Build ROS 2 package
   - Build C++ library 
+  - Multiple subscriber nodes in one executable
 
 ## How to build for test coverage
 
