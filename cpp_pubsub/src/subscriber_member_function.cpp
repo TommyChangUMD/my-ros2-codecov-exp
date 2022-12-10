@@ -31,7 +31,7 @@ public:
                     const std::string& topic_name     = "my_topic") :
     Node(node_name, node_namespace)
   {
-    for (int idx = 0; idx < numNodes; idx++)
+    for (int idx = 0; idx < numSubs; idx++)
     {
       std::string subName = "subscription" +
                             std::to_string(idx);
@@ -51,8 +51,8 @@ private:
                 subName.c_str(), msg.data.c_str());
   }
 
-  int numNodes                          = 5;
-  std::vector<SUBSCRIBER>subscriptions_ = std::vector<SUBSCRIBER>(numNodes);
+  int numSubs                           = 5;
+  std::vector<SUBSCRIBER>subscriptions_ = std::vector<SUBSCRIBER>(numSubs);
 };
 
 int main(int argc, char *argv[])
