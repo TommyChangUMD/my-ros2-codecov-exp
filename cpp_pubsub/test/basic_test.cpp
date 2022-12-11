@@ -39,7 +39,9 @@ public:
     // Tear things that should occur after every test instance should go here
 
     // Stop the running ros2 node, if any.
-    StopROSExec();
+    bool retVal = StopROSExec();
+
+    EXPECT_TRUE(retVal);
 
     std::cout << "DONE WITH TEARDOWN" << std::endl;
   }
@@ -90,6 +92,7 @@ protected:
 TEST_F(TaskPlanningFixture, TrueIsTrueTest)
 {
   std::cout << "TEST BEGINNING!!" << std::endl;
+
   EXPECT_TRUE(true);
 
   /*

@@ -15,6 +15,16 @@ This repo provides a template for:
   - Subscribe to multiple topics (no need to use multiple callbacks.)
   - ROS2 node unit test (see [minimal_integration_test](https://github.com/TommyChangUMD/minimal_integration_test), [level 2 unit test ](https://www.theconstructsim.com/how-to-test-your-ros-programs/))
 
+## How to build and run demo
+
+```
+rm -rf build/cpp_pubsub/
+colcon build -packages-select cpp_pubsub
+source install/setup.bash
+ros2 launch cpp_pubsub run-demo.py
+```
+
+
 ## How to build for test coverage
 
 ```

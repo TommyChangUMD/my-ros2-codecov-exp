@@ -53,8 +53,8 @@ jobs:
             $(. /etc/os-release && echo $UBUNTU_CODENAME) main" \
             | sudo tee /etc/apt/sources.list.d/ros2.list > /dev/null
           sudo apt update
-          sudo apt install ros-humble-ros-base python3-colcon-common-extensions lcov
-
+          sudo apt install ros-humble-ros-base python3-colcon-common-extensions
+          sudo apt install lcov psmisc
 
       # Build for test coverage
       - name: Configure CMake flags and build exectables

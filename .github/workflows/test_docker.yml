@@ -39,7 +39,7 @@ jobs:
       - name: Install additional packages if needed
         run: |
           apt update
-          apt -y install lcov
+          apt install lcov psmisc
       - name: Check out the repo
         uses: actions/checkout@v3
         
