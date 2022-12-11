@@ -42,9 +42,9 @@ jobs:
       - name: Install ROS 2 Humble packages
         run: |
           sudo apt update
-          sudo apt install software-properties-common
+          sudo apt install -y software-properties-common
           sudo add-apt-repository universe
-          sudo apt update && sudo apt install curl
+          sudo apt update && sudo apt install -y curl
           sudo curl -sSL https://raw.githubusercontent.com/ros/rosdistro/master/ros.key \
             -o /usr/share/keyrings/ros-archive-keyring.gpg
           echo "deb [arch=$(dpkg --print-architecture) \
@@ -53,8 +53,8 @@ jobs:
             $(. /etc/os-release && echo $UBUNTU_CODENAME) main" \
             | sudo tee /etc/apt/sources.list.d/ros2.list > /dev/null
           sudo apt update
-          sudo apt install ros-humble-ros-base python3-colcon-common-extensions
-          sudo apt install lcov
+          sudo apt install -y ros-humble-ros-base python3-colcon-common-extensions
+          sudo apt install -y lcov
 
       # Build for test coverage
       - name: Configure CMake flags and build exectables
