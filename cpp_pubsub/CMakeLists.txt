@@ -39,6 +39,12 @@ if(BUILD_TESTING)
   # the following lines skip flake8 check
   set(ament_cmake_flake8_FOUND TRUE)
   ament_lint_auto_find_test_dependencies()
+
+  # Add a gtest executable
+  set(TESTFILES
+    test/basic_test.cpp)
+  ament_add_gtest(${PROJECT_NAME}_test ${TESTFILES})
+  ament_target_dependencies(${PROJECT_NAME}_test rclcpp std_msgs)
 endif()
 
 

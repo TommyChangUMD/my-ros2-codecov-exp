@@ -30,6 +30,8 @@ lcov --remove $PROG_DIR/coverage.info \
      '*rmw/rmw/*' \
      '*tracetools/*' \
      '*_msgs/*' \
+     '*/gtest*' \
+     'gtest/*' \
      --output-file $PROG_DIR/coverage_cleaned.info
 
 

@@ -22,9 +22,10 @@ colcon build --cmake-args -DCOVERAGE=1 --packages-select cpp_pubsub
 cat log/latest_build/cpp_pubsub/stdout_stderr.log
 ```
 
-## How to check c++ code (and others) for style and static coding errors
+## How to run unit tests
 
 ```
+source install/setup.bash
 colcon test --packages-select cpp_pubsub
 cat log/latest_test/cpp_pubsub/stdout_stderr.log
 ```
@@ -32,31 +33,44 @@ cat log/latest_test/cpp_pubsub/stdout_stderr.log
 You should see:
 
 ```
-100% tests passed, 0 tests failed out of 6
+: [==========] Running 1 test from 1 test suite.
+1: [----------] Global test environment set-up.
+1: [----------] 1 test from TaskPlanningFixture
+1: [ RUN      ] TaskPlanningFixture.TrueIsTrueTest
+1: [INFO] [1670717396.964270896] [basic_test]: DONE WITH CONSTRUCTOR!!
+1: [INFO] [1670717398.859776334] [basic_test]: DONE WITH SETUP!!
+1: TEST BEGINNING!!
+1: [INFO] [1670717399.361518186] [basic_test]: I heard: 'Hello, world! 3'
+1: [INFO] [1670717399.861460092] [basic_test]: I heard: 'Hello, world! 4'
+1: [INFO] [1670717400.361478619] [basic_test]: I heard: 'Hello, world! 5'
+1: [INFO] [1670717400.861412773] [basic_test]: I heard: 'Hello, world! 6'
+1: [INFO] [1670717401.361391912] [basic_test]: I heard: 'Hello, world! 7'
+1: DONE WITH TEARDOWN
+1: [       OK ] TaskPlanningFixture.TrueIsTrueTest (4961 ms)
+1: [----------] 1 test from TaskPlanningFixture (4961 ms total)
+1: 
+1: [----------] Global test environment tear-down
+1: [==========] 1 test from 1 test suite ran. (4961 ms total)
+1: [  PASSED  ] 1 test.
+1: DONE SHUTTING DOWN ROS
+
+....
 
 Label Time Summary:
-cppcheck      =   0.20 sec*proc (1 test)
-flake8        =   0.29 sec*proc (1 test)
-lint_cmake    =   0.18 sec*proc (1 test)
-linter        =   2.57 sec*proc (6 tests)
+cppcheck      =   0.18 sec*proc (1 test)
+gtest         =   5.17 sec*proc (1 test)
+lint_cmake    =   0.19 sec*proc (1 test)
+linter        =   1.24 sec*proc (5 tests)
 pep257        =   0.25 sec*proc (1 test)
-uncrustify    =   0.19 sec*proc (1 test)
-xmllint       =   1.46 sec*proc (1 test)
+uncrustify    =   0.23 sec*proc (1 test)
+xmllint       =   0.39 sec*proc (1 test)
+
+Total Test time (real) =   6.41 sec
 ```
 
-## How to run test and generate code coverage report
+## How generate code coverage report (both lcov info file and html output)
 ```
-## don't forget to source the shell environment
 source install/setup.bash
-
-# launch unit test to generate coverage. (or run whatever for 3 secs)
-ros2 launch cpp_pubsub run_test.launch.py
-
-# --- Or run any infinite-loop tests and then control-c after 3 secs
-timeout -s SIGINT --preserve-status 3 \ 
-    ros2 launch cpp_pubsub run_test.launch.py
-
-# create coverage report (both lcov info file and html output)
 ros2 run cpp_pubsub generate_coverage_report.bash
 ```
 
