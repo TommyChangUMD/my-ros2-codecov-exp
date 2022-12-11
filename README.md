@@ -19,9 +19,9 @@ This repo provides a template for:
 
 ```
 rm -rf build/cpp_pubsub/
-colcon build -packages-select cpp_pubsub
+colcon build --packages-select cpp_pubsub
 source install/setup.bash
-ros2 launch cpp_pubsub run-demo.py
+ros2 launch cpp_pubsub run_demo.launch.py
 ```
 
 
