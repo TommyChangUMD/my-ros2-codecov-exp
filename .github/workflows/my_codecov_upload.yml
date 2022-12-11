@@ -54,7 +54,7 @@ jobs:
             | sudo tee /etc/apt/sources.list.d/ros2.list > /dev/null
           sudo apt update
           sudo apt install ros-humble-ros-base python3-colcon-common-extensions
-          sudo apt install lcov psmisc
+          sudo apt install lcov
 
       # Build for test coverage
       - name: Configure CMake flags and build exectables

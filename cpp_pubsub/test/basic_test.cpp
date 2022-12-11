@@ -59,7 +59,8 @@ protected:
       " > /dev/null 2> /dev/null &";
     cmdInfo_ss << "ros2 node info " << "/" << node_name <<
       " > /dev/null 2> /dev/null";
-    killCmd_ss << "killall -s SIGINT " << exec_name <<
+
+    killCmd_ss << "pkill --signal SIGINT " << exec_name <<
       " > /dev/null 2> /dev/null";
 
     // Start a ros2 node and wait for it to get ready:
