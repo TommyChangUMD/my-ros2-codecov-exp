@@ -51,25 +51,23 @@ jobs:
           cat log/latest_build/cpp_pubsub/stdout_stderr.log
           find build/cpp_pubsub/ | grep -E 'gcno' # catch error -- exepct to see .gcno files
       
-      # Check c++ code (and others) for style and static coding errors
-      - name: Check code sytle and error
+      # Run unit test and also check c++ code (and others) for style and static coding errors
+      - name: Run unit test and check code error
         run: |
           source /opt/ros/galactic/setup.bash
           colcon test --packages-select cpp_pubsub
           cat log/latest_test/cpp_pubsub/stdout_stderr.log
+          find build/cpp_pubsub/ | grep -E 'gcda' # catch error -- expect to see .gcda files
           colcon test-result --test-result-base build/cpp_pubsub/ # catch error
 
-      # Run test suite and compute code coverage
-      - name: Run Test Coverage
+      # Generate code coverage test report
+      - name: Generate test coverage report
         run: |
           source install/setup.bash
-          timeout -s SIGINT --preserve-status 3 \
-            ros2 launch cpp_pubsub run_test.launch.py
-          find build/cpp_pubsub/ | grep -E 'gcda' # catch error -- expect to see .gcda files
           ros2 run cpp_pubsub generate_coverage_report.bash
       
       # Upload coverage result to CodeCov
-      - name: Upload result to CodeCov
+      - name: Upload coverage result to CodeCov
         uses: codecov/codecov-action@v3
         with:
           token: ${{ secrets.CODECOV_TOKEN }} # not required for public repos
