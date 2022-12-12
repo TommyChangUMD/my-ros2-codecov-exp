@@ -1,4 +1,3 @@
-
 // Description: Test if a simple task plan works
 
 #include <rclcpp/rclcpp.hpp>
@@ -25,9 +24,10 @@ public:
      *  example: package name = cpp_pubsub, node name = minimal_publisher,
      * executable = talker
      */
-    bool retVal = StartROSExec("cpp_pubsub",
-                               "minimal_publisher",
-                               "talker");
+    bool retVal = StartROSExec(
+      "cpp_pubsub",
+      "minimal_publisher",
+      "talker");
 
     EXPECT_TRUE(retVal);
 
@@ -51,9 +51,10 @@ protected:
   rclcpp::Node::SharedPtr node_;
   std::stringstream cmd_ss, cmdInfo_ss, killCmd_ss;
 
-  bool StartROSExec(const char *pkg_name,
-                    const char *node_name,
-                    const char *exec_name)
+  bool StartROSExec(
+    const char *pkg_name,
+    const char *node_name,
+    const char *exec_name)
   {
     cmd_ss << "ros2 run " << pkg_name << " " << exec_name <<
       " > /dev/null 2> /dev/null &";
@@ -63,11 +64,16 @@ protected:
     killCmd_ss << "pkill --signal SIGINT " << exec_name <<
       " > /dev/null 2> /dev/null";
 
+    // First kill the ros2 node, in case it's still running.
+    StopROSExec();
+
     // Start a ros2 node and wait for it to get ready:
-    int retVal =  system(cmd_ss.str().c_str());
+    int retVal = system(cmd_ss.str().c_str());
 
     if (retVal != 0)
+    {
       return false;
+    }
 
     retVal = -1;
 
@@ -82,9 +88,11 @@ protected:
   bool StopROSExec()
   {
     if (killCmd_ss.str().empty())
+    {
       return true;
+    }
 
-    int retVal =  system(killCmd_ss.str().c_str());
+    int retVal = system(killCmd_ss.str().c_str());
 
     return retVal == 0;
   }
@@ -102,17 +110,17 @@ TEST_F(TaskPlanningFixture, TrueIsTrueTest)
   using std_msgs::msg::String;
   using SUBSCRIBER = rclcpp::Subscription<String>::SharedPtr;
   bool hasData            = false;
-  SUBSCRIBER subscription = node_->create_subscription<String>
-                              ("topic", 10,
+  SUBSCRIBER subscription = node_->create_subscription<String>(
+    "topic", 10,
 
-// Lambda expression begins
-                              [&](const std_msgs::msg::String& msg) {
+    // Lambda expression begins
+    [&](const std_msgs::msg::String& msg) {
     RCLCPP_INFO(node_->get_logger(), "I heard: '%s'", msg.data.c_str());
     hasData = true;
   }
 
-// end of lambda expression
-                              );
+    // end of lambda expression
+    );
 
   /*
    * 3.) check to see if we get data winhin 3 sec

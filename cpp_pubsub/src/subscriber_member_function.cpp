@@ -1,4 +1,3 @@
-
 // Copyright 2016 Open Source Robotics Foundation, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -26,10 +25,11 @@ using STRING_MSG = std_msgs::msg::String;
 class MinimalSubscriber : public rclcpp::Node {
 public:
 
-  MinimalSubscriber(const std::string& node_name      = "my_node",
-                    const std::string& node_namespace = "/my_ns",
-                    const std::string& topic_name     = "my_topic") :
-    Node(node_name, node_namespace)
+  MinimalSubscriber(
+    const std::string& node_name      = "my_node",
+    const std::string& node_namespace = "/my_ns",
+    const std::string& topic_name     = "my_topic")
+    : Node(node_name, node_namespace)
   {
     for (int idx = 0; idx < numSubs; idx++)
     {
@@ -37,9 +37,10 @@ public:
                             std::to_string(idx);
       std::function<void(const STRING_MSG& msg)> callback =
         std::bind(&MinimalSubscriber::topic_callback, this, _1, subName);
-      subscriptions_[idx] = this->create_subscription<String>(topic_name,
-                                                              10,
-                                                              callback);
+      subscriptions_[idx] = this->create_subscription<String>(
+        topic_name,
+        10,
+        callback);
     }
   }
 
@@ -47,8 +48,9 @@ private:
 
   void topic_callback(const STRING_MSG& msg, std::string subName)
   {
-    RCLCPP_INFO(this->get_logger(), "subName=%s, I heard: '%s'",
-                subName.c_str(), msg.data.c_str());
+    RCLCPP_INFO(
+      this->get_logger(), "subName=%s, I heard: '%s'",
+      subName.c_str(), msg.data.c_str());
   }
 
   int numSubs                           = 5;

@@ -1,4 +1,3 @@
-
 // Copyright 2016 Open Source Robotics Foundation, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -31,8 +30,8 @@ using TIMER     = rclcpp::TimerBase::SharedPtr;
 class MinimalPublisher : public rclcpp::Node {
 public:
 
-  MinimalPublisher() :
-    Node("minimal_publisher"),
+  MinimalPublisher()
+    : Node("minimal_publisher"),
     count_(0)
   {
     // define topic name
@@ -42,8 +41,9 @@ public:
     publisher_ = this->create_publisher<STRING>(topicName, 10);
 
     // creates 2 hz timer and ties the callback function
-    timer_ = this->create_wall_timer
-               (500ms, std::bind(&MinimalPublisher::timer_callback, this));
+    timer_ =
+      this->create_wall_timer(500ms,
+                              std::bind(&MinimalPublisher::timer_callback, this));
   }
 
 private:
@@ -58,9 +58,10 @@ private:
     auto message = STRING();
 
     message.data = "Hello, world! " + std::to_string(count_++);
-    RCLCPP_INFO_STREAM(this->get_logger(),
-                       "Publishing: " << message.data.c_str() <<
-                       " " << function2(323));
+    RCLCPP_INFO_STREAM(
+      this->get_logger(),
+      "Publishing: " << message.data.c_str() <<
+        " " << function2(323));
 
     // Publish the message
     publisher_->publish(message);
