@@ -1,4 +1,5 @@
 // Copyright 2016 Open Source Robotics Foundation, Inc.
+
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -42,8 +43,9 @@ public:
 
     // creates 2 hz timer and ties the callback function
     timer_ =
-      this->create_wall_timer(500ms,
-                              std::bind(&MinimalPublisher::timer_callback, this));
+      this->create_wall_timer(
+        500ms,
+        std::bind(&MinimalPublisher::timer_callback, this));
   }
 
 private:
